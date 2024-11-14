@@ -1,0 +1,30 @@
+const str = “Books are essential for knowledge. Books open doors to new ideas, and books make us smarter. Reading books is fundamental, as reading expands our thinking and ideas. Reading fuels curiosity, and ideas come from reading widely.”
+
+let words = str.toLowerCase().replace(/[,.]/g,"").split(" ")
+
+let mapWords = {}
+
+words.forEach((word)=>{
+    if (!mapWords[word]){
+        mapWords[word] = 1
+    }else{
+        mapWords[word]++
+    }
+})
+
+
+let values = Object.values(mapWords)
+let set = new Set(values)
+
+let wordCount = [...set].sort()
+let secondMaxValue = wordCount[wordCount.length-2]
+
+let result = {}
+
+for (let word in mapWords) {
+    if (mapWords[word] === secondMaxValue) {
+        result[word] = secondMaxValue;
+    }
+}
+
+console.log(result)
